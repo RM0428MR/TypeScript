@@ -1,0 +1,24 @@
+{
+  "name": "typescript-lesson",
+  "version": "1.0.0",
+  "description": "Typescript Lesson用のリポジトリ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gizumo-education/typescript-lesson.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gizumo-education/typescript-lesson/issues"
+  },
+  "homepage": "https://github.com/gizumo-education/typescript-lesson#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
