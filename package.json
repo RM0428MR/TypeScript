@@ -4,7 +4,8 @@
   "description": "Typescript Lesson用のリポジトリ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:eventHandler": "vite src/eventHandler-lesson/ --config vite.config.mts --open"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,9 @@
   "devDependencies": {
     "@types/jsdom": "^28.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.13",
+    "vite-plugin-checker": "^0.13.0"
   },
   "dependencies": {
     "jsdom": "^29.1.0"
