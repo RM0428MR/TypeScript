@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:DOMOperation": "vite src/DOMOparation-lesson/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/eventHandler-lesson/ --config vite.config.mts --open"
   },
   "repository": {
