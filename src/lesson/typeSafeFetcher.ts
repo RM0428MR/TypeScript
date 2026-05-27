@@ -4,12 +4,12 @@ interface User {
 }
 
 // User 型であるか判定する型ガード関数
-function isUser(item) {
+function isUser(item: unknown) {
   // 処理内容を記述   
 }
 
 // User[] 型であるか判定する型ガード関数
-function isUserArray(data) {
+function isUserArray(item: unknown) {
   // 処理内容を記述 
 }
 
