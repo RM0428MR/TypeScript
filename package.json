@@ -4,7 +4,7 @@
   "description": "Typescript Lesson用のリポジトリ",
   "main": "index.js",
   "scripts": {
-    "dev:domOperation": "vite src/domOperation-lesson/ --config vite.config.mts --open",
+    "dev:domOperation": "vite src/lesson/domOperation/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/eventHandler-lesson/ --config vite.config.mts --open"
   },
   "repository": {
