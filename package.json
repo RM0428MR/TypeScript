@@ -4,8 +4,7 @@
   "description": "Typescript Lesson用のリポジトリ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:DOMOperation": "vite src/DOMOparation-lesson/ --config vite.config.mts --open",
+    "dev:domOperation": "vite src/domOperation-lesson/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/eventHandler-lesson/ --config vite.config.mts --open"
   },
   "repository": {
@@ -15,10 +14,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gizumo-education/typescript-lesson/issues"
-  },
-  "homepage": "https://github.com/gizumo-education/typescript-lesson#readme",
   "devDependencies": {
     "@types/jsdom": "^28.0.1",
     "ts-node": "^10.9.2",
