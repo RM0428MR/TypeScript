@@ -22,7 +22,7 @@ function fetchUserProfile(): Promise<PromiseUser> {
     setTimeout(() => {
       // 0,1のどちらかの数をランダムに生成
       const randInt: number = Math.round(Math.random())
-      if (randInt) {        
+      if (randInt) {
         const john: PromiseUser = {
           id: 1,
           name: 'John Doe',
@@ -35,5 +35,3 @@ function fetchUserProfile(): Promise<PromiseUser> {
     }, 1000)
   })
 }
-
-// ここから下に回答を記述してください。
