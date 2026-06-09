@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1 class="sr-only">Chat</h1>
+    <div class="chat-container">
+
+      <!-- セットアップ画面 -->
+      <div id="setup-screen" class="setup-screen">
+        <div class="setup-content">
+          <div class="setup-avatar">AI</div>
+          <p class="setup-title">Assistant</p>
+          <p class="setup-description">チャットを始める前に<br>メールアドレスを確認します</p>
+          <div class="setup-field">
+            <label class="setup-label" for="email-input">メールアドレス</label>
+            <input
+              type="email"
+              id="email-input"
+              class="setup-input"
+              value="test@example.com"
+              autocomplete="off"
+            />
+          </div>
+          <button id="start-btn" class="start-btn" disabled>
+            はじめる
+          </button>
+        </div>
+      </div>
+
+      <!-- チャット画面 -->
+      <div id="chat-screen" class="chat-screen">
+        <header class="chat-header">
+          <div class="header-profile">
+            <div class="avatar">
+              AI
+              <span class="status-dot"></span>
+            </div>
+            <div class="header-info">
+              <p class="header-name">Assistant</p>
+              <p class="header-status">オンライン</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="messages-wrapper" id="messages-wrapper">
+          <div class="messages" id="messages"></div>
+        </div>
+
+        <footer class="chat-footer">
+          <div class="input-row">
+            <input
+              type="text"
+              id="message-input"
+              class="message-input"
+              placeholder="メッセージを入力..."
+              autocomplete="off"
+            />
+            <button id="send-btn" class="send-btn" aria-label="送信" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </footer>
+      </div>
+
+    </div>
+    <script type="module" src="./chat.ts"></script>
+    <script type="module" src="./domOperation.ts"></script>
+    <script type="module" src="./eventHandler.ts"></script>
+  </body>
+</html>
