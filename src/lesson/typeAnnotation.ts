@@ -19,7 +19,7 @@ let userAge: number = 25;
 userAge = "26歳";
 
 // 問題 3
-let result:
+let result
 
 result = 100;
 result = "合格";

@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Typescript Lesson用のリポジトリ",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:domOperation": "vite src/lesson/chatApp/ --config vite.config.mts --open",
+    "dev:eventHandler": "vite src/lesson/chatApp/ --config vite.config.mts --open /?skip-setup",
   },
   "repository": {
     "type": "git",
@@ -13,12 +15,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gizumo-education/typescript-lesson/issues"
-  },
-  "homepage": "https://github.com/gizumo-education/typescript-lesson#readme",
   "devDependencies": {
+    "@types/jsdom": "^28.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.13",
+    "vite-plugin-checker": "^0.13.0"
+  },
+  "dependencies": {
+    "jsdom": "^29.1.0"
   }
 }
