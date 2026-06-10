@@ -9,29 +9,30 @@
 
 
 // 練習問題
-// 問題1
-type PromiseUser = {
-  id: number,
-  name: string,
-  birthday: string,
-  address: string,
-}
-
-function fetchUserProfile(): Promise<PromiseUser> {
-  return new Promise ((resolve, reject) => {
+// 問題 1
+function fetchUserProfile() {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // 0,1のどちらかの数をランダムに生成
-      const randInt: number = Math.round(Math.random())
+      const randInt: number = Math.round(Math.random());
       if (randInt) {
-        const john: PromiseUser = {
+        resolve({
           id: 1,
           name: 'John Doe',
           birthday: '1995-09-10',
-          address: '東京都千代田区千代田1-1'
-        };
-        resolve(john);
+          address: '東京都千代田区千代田1-1',
+        });
       }
-      reject("Userの取得に失敗しました。")
-    }, 1000)
-  })
+    }, 1000);
+  });
+}
+
+fetchUserProfile()
+  .then((val) => {
+    console.log('ユーザープロフィール:', val.name);
+  });
+
+function clearCache() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), 500);
+  });
 }
