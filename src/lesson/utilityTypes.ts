@@ -40,7 +40,6 @@ function updateTask(id: number, changes) {
 const priorityLabels = {
   high:   '高',
   medium: '中',
-  low:    '低',
 };
 
 updateTask(1, { done: true });
