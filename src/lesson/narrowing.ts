@@ -10,14 +10,14 @@
 
 // 練習問題
 // 問題 1
-function countLength(value: string | null): number {}
+function describeValue(value: string | number | null): string {}
 
-console.log(countLength('TypeScript'));
-console.log(countLength(null));
+console.log(describeValue('hello'));
+console.log(describeValue(42));
+console.log(describeValue(null));
 
 // 問題 2
-function formatValue(value: string | number | boolean): string {}
+function displayMessage(value: Error | string): void {}
 
-console.log(formatValue('hello'));
-console.log(formatValue(42));
-console.log(formatValue(true));
+displayMessage(new Error('接続に失敗しました'));
+displayMessage('処理が完了しました');
