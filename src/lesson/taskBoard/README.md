@@ -20,7 +20,7 @@ npm run dev:taskBoard
 現在、フォームにタイトルと優先度を入力して「追加」ボタンを押しても何も起こりません。  
 `src/lesson/taskBoard/taskBoard.ts` にコードを追加して、タスクを追加できるようにしてください。
 
-API の仕様は `openapi.yaml` を参照してください。
+API の仕様は [openapi.yaml](http://localhost:5173/swagger/index.html) を参照してください。
 
 ### 満たすべき動作
 
