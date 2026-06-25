@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: タスクボード API
+  version: 1.0.0
+
+servers:
+  - url: /api
+
+paths:
+  /tasks:
+    get:
+      summary: タスク一覧取得
+      responses:
+        "200":
+          description: タスク一覧
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+              example:
+                - id: 1
+                  title: TypeScriptの基礎を学ぶ
+                  priority: high
+                  status: done
+                - id: 2
+                  title: ジェネリクスを理解する
+                  priority: medium
+                  status: in_progress
+
+    post:
+      summary: タスク追加
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTask"
+            example:
+              title: 新しいタスク
+              priority: medium
+      responses:
+        "201":
+          description: 追加されたタスク
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+              example:
+                id: 5
+                title: 新しいタスク
+                priority: medium
+                status: todo
+        "400":
+          description: バリデーションエラー（title が空文字）
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: タイトルを入力してください
+
+components:
+  schemas:
+    Task:
+      type: object
+      required:
+        - id
+        - title
+        - priority
+        - status
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        title:
+          type: string
+          example: TypeScriptの基礎を学ぶ
+        priority:
+          $ref: "#/components/schemas/Priority"
+        status:
+          $ref: "#/components/schemas/Status"
+
+    NewTask:
+      type: object
+      required:
+        - title
+        - priority
+      properties:
+        title:
+          type: string
+          example: 新しいタスク
+        priority:
+          $ref: "#/components/schemas/Priority"
+
+    Priority:
+      type: string
+      enum:
+        - low
+        - medium
+        - high
+
+    Status:
+      type: string
+      enum:
+        - todo
+        - in_progress
+        - done
+
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: タイトルを入力してください
