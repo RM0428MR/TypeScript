@@ -22,4 +22,3 @@ userAge = "26歳";
 let result
 
 result = 100;
-result = "合格";
