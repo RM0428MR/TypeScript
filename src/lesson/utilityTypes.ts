@@ -18,8 +18,13 @@ type Product = {
   description: string;
 };
 
-const summary: ProductSummary = { id: 1, name: 'TypeScript入門', price: 2800 };
-const product: ProductWithoutStock = { id: 1, name: 'TypeScript入門', price: 2800 };
+const summary: ProductSummary = { name: 'TypeScript入門', stock: 10 };
+const product: ProductWithoutStock = {
+  id: 1,
+  name: 'TypeScript入門',
+  price: 2800,
+  description: 'TypeScriptの基礎を学べる入門書'
+};
 
 console.log(summary.name);
 console.log(product.price);
