@@ -9,6 +9,7 @@
   "scripts": {
     "dev:domOperation": "vite src/lesson/chatApp/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/lesson/chatApp/ --config vite.config.mts --open /?skip-setup",
+    "typecheck:file": "sh scripts/typecheck-file.sh"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.1",
