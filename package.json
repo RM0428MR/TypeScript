@@ -10,7 +10,8 @@
     "dev:domOperation": "vite src/lesson/chatApp/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/lesson/chatApp/ --config vite.config.mts --open /?skip-setup",
     "dev:taskBoard": "concurrently \"vite src/lesson/taskBoard/ --config vite.config.taskBoard.ts --open\" \"tsx watch src/server/index.ts\"",
-    "reset:taskBoard": "cp src/server/db.initial.json src/server/db.json"
+    "reset:taskBoard": "cp src/server/db.initial.json src/server/db.json",
+    "typecheck:file": "sh scripts/typecheck-file.sh"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.1",

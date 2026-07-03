@@ -42,7 +42,6 @@
     "skipLibCheck": true,
   },
   "exclude": [
-    "src/lesson/**.ts",
     "src/server",
     "node_modules",
     "vite.config.mts"
