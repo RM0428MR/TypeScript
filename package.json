@@ -9,16 +9,23 @@
   "scripts": {
     "dev:domOperation": "vite src/lesson/chatApp/ --config vite.config.mts --open",
     "dev:eventHandler": "vite src/lesson/chatApp/ --config vite.config.mts --open /?skip-setup",
+    "dev:taskBoard": "concurrently \"vite src/lesson/taskBoard/ --config vite.config.taskBoard.ts --open\" \"tsx watch src/server/index.ts\"",
+    "reset:taskBoard": "cp src/server/db.initial.json src/server/db.json",
     "typecheck:file": "sh scripts/typecheck-file.sh"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.1",
+    "@types/node": "^22",
+    "concurrently": "^9",
     "ts-node": "^10.9.2",
+    "tsx": "^4",
     "typescript": "^5.9.3",
     "vite": "^8.0.13",
     "vite-plugin-checker": "^0.13.0"
   },
   "dependencies": {
+    "@hono/node-server": "^1",
+    "hono": "^4",
     "jsdom": "^29.1.0"
   },
   "volta": {

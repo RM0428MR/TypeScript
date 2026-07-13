@@ -1,0 +1,6 @@
+[
+  { "id": 1, "title": "TypeScriptの基礎を学ぶ",     "priority": "high",   "status": "done" },
+  { "id": 2, "title": "ジェネリクスを理解する",       "priority": "medium", "status": "in_progress" },
+  { "id": 3, "title": "ユーティリティ型を使いこなす", "priority": "low",    "status": "todo" },
+  { "id": 4, "title": "型の絞り込みを練習する",       "priority": "high",   "status": "todo" }
+]
