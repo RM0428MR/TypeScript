@@ -1,24 +1,8 @@
-type Priority = "low" | "medium" | "high";
-type Status = "todo" | "in_progress" | "done";
-
-type User = {
-  id: number;
-  name: string;
-  email?: string;
-};
-
-type Task = {
-  readonly id: number;
-  title: string;
-  priority: Priority;
-  status: Status;
-  assignee?: User;
-};
-
-type TaskStats = Record<Status, number>;
+import type { Priority, Status, FilterStatus, Task, TaskStats } from "./types.ts";
 
 const statusFilter = document.getElementById("status-filter") as HTMLSelectElement;
 const taskList = document.getElementById("task-list") as HTMLUListElement;
+const messageArea = document.getElementById("message-area") as HTMLParagraphElement;
 const statsArea = document.getElementById("stats-area") as HTMLDivElement;
 
 const PRIORITY_LABELS: Record<Priority, string> = {
@@ -51,7 +35,7 @@ const loadTasks = (): Promise<void> =>
  * @param status - 絞り込むステータス、または `"all"`
  * @returns 条件に一致する {@link Task} の配列
  */
-const filterTasks = (status: Status | "all"): Task[] =>
+const filterTasks = (status: FilterStatus): Task[] =>
   status === "all" ? tasks : tasks.filter((t) => t.status === status);
 
 /**
@@ -91,15 +75,19 @@ const renderTasks = (tasks: Task[]): void => {
  * @param stats - 表示する {@link TaskStats}
  */
 const renderStats = (stats: TaskStats): void => {
-  statsArea.textContent = `未着手: ${stats.todo} / 進行中: ${stats.in_progress} / 完了: ${stats.done}`;
+  statsArea.textContent = `${STATUS_LABELS.todo}: ${stats.todo} / ${STATUS_LABELS.in_progress}: ${stats.in_progress} / ${STATUS_LABELS.done}: ${stats.done}`;
 };
 
 statusFilter.addEventListener("change", (event: Event) => {
   const { value } = event.target as HTMLSelectElement;
-  renderTasks(filterTasks(value as Status | "all"));
+  renderTasks(filterTasks(value as FilterStatus));
 });
 
-loadTasks().then(() => {
-  renderTasks(filterTasks("all"));
-  renderStats(calcStats(tasks));
-});
+loadTasks()
+  .then(() => {
+    renderTasks(filterTasks("all"));
+    renderStats(calcStats(tasks));
+  })
+  .catch(() => {
+    messageArea.textContent = "エラー: タスクの取得に失敗しました";
+  });
