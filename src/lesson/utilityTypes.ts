@@ -17,6 +17,8 @@ type Product = {
   stock: number;
   description: string;
 };
+type ProductSummary = Pick<Product, 'name' | 'stock'>;
+type ProductWithoutStock = Omit<Product, 'stock'>;
 
 const summary: ProductSummary = { name: 'TypeScript入門', stock: 10 };
 const product: ProductWithoutStock = {
@@ -35,14 +37,15 @@ type Task = {
   title: string;
   done: boolean;
 };
+type changes = Partial<Task>;
 
 type Priority = 'high' | 'medium' | 'low';
 
-function updateTask(id: number, changes) {
+function updateTask(id: number, changes: changes) {
   console.log(`タスク ${id} を更新`, changes);
 }
 
-const priorityLabels = {
+const priorityLabels: Record<Priority, string> = {
   high:   '高',
   medium: '中',
 };
