@@ -44,6 +44,7 @@
   "exclude": [
     "src/server",
     "node_modules",
-    "vite.config.mts"
+    "vite.config.mts",
+    "vite.config.taskBoard.ts"
   ]
 }

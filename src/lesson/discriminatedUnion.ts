@@ -10,7 +10,17 @@
 
 // 練習問題
 // 問題 1
-function showResult(result: Result) {
+type SuccessResult = {
+  status: 'success';
+  data: string;
+};
+type ErrorResult = {
+  status: 'error';
+  message: string;
+};
+type Result = SuccessResult | ErrorResult;
+
+function showResult(result: Result):void {
   if (result.status === 'success') {
     console.log(`成功: ${result.data}`);
   } else {
@@ -22,6 +32,20 @@ showResult({ status: 'success', data: 'ユーザー情報を取得しました' 
 showResult({ status: 'error', message: 'ネットワークエラーが発生しました' });
 
 // 問題 2
+
+type Loading ={
+  state: 'loading';
+};
+type Loaded = {
+  state: 'loaded';
+  content: string;
+}
+type Failed = {
+  state: 'failed';
+  error: string;
+}
+type PageState = Loading | Loaded | Failed;
+
 function showPageState(page: PageState) {
   switch (page.state) {
     case 'loading':
