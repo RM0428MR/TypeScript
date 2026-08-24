@@ -4,6 +4,9 @@ const statusFilter = document.getElementById("status-filter") as HTMLSelectEleme
 const taskList = document.getElementById("task-list") as HTMLUListElement;
 const messageArea = document.getElementById("message-area") as HTMLParagraphElement;
 const statsArea = document.getElementById("stats-area") as HTMLDivElement;
+const taskForm = document.getElementById("task-form") as HTMLFormElement;
+const taskTitleInput = document.getElementById("task-title") as HTMLInputElement;
+const taskPrioritySelect = document.getElementById("task-priority") as HTMLSelectElement;
 
 const PRIORITY_LABELS: Record<Priority, string> = {
   low: "低",
@@ -78,16 +81,63 @@ const renderStats = (stats: TaskStats): void => {
   statsArea.textContent = `${STATUS_LABELS.todo}: ${stats.todo} / ${STATUS_LABELS.in_progress}: ${stats.in_progress} / ${STATUS_LABELS.done}: ${stats.done}`;
 };
 
-statusFilter.addEventListener("change", (event: Event) => {
-  const { value } = event.target as HTMLSelectElement;
-  renderTasks(filterTasks(value as FilterStatus));
+const renderBoard = (): void => {
+  renderTasks(filterTasks(statusFilter.value as FilterStatus));
+  renderStats(calcStats(tasks));
+};
+
+const showErrorMessage = (message: string): void => {
+  messageArea.textContent = `エラー: ${message}`;
+};
+
+statusFilter.addEventListener("change", () => {
+  renderBoard();
+});
+
+taskForm.addEventListener("submit", async (event: SubmitEvent) => {
+  event.preventDefault();
+
+  const title = taskTitleInput.value.trim();
+  const priority = taskPrioritySelect.value as Priority;
+
+  if (!title) {
+    showErrorMessage("タイトルを入力してください");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, priority }),
+    });
+
+    const responseBody = (await response.json().catch(() => null)) as
+      | ({ message?: string } & Partial<Task>)
+      | null;
+
+    if (!response.ok) {
+      showErrorMessage(responseBody?.message ?? "タスクの追加に失敗しました");
+      return;
+    }
+
+    const newTask = responseBody as Task;
+    tasks = [...tasks, newTask];
+    taskTitleInput.value = "";  
+    taskPrioritySelect.value = "low";
+    messageArea.textContent = "";
+    renderBoard();
+  } catch {
+    showErrorMessage("ネットワークエラーが発生しました");
+  }
 });
 
 loadTasks()
   .then(() => {
-    renderTasks(filterTasks("all"));
-    renderStats(calcStats(tasks));
+    renderBoard();
   })
   .catch(() => {
-    messageArea.textContent = "エラー: タスクの取得に失敗しました";
+    showErrorMessage("タスクの取得に失敗しました");
   });
