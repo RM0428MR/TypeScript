@@ -16,18 +16,24 @@ const STATUS = {
   pending: '保留中',
 };
 
+type StatusKey = keyof typeof STATUS;
+
 function getStatusLabel(key: StatusKey): string {
   return STATUS[key];
 }
 
 console.log(getStatusLabel('active'));
 console.log(getStatusLabel('pending'));
+console.log(getStatusLabel('unknown'));
 
 // 問題 2
 type User = {
   id: number;
   name: string;
   email: string;
+};
+type Freeze<T> = {
+  readonly [K in keyof T]: T[K];
 };
 
 const frozenUser: Freeze<User> = {

@@ -16,6 +16,11 @@ type Product = {
   price: number;
 };
 
+type Paginated<T> = {
+  items: T[];
+  total: number;
+  page: number;
+};
 const productList: Paginated<Product> = {
   items: [
     { id: 1, name: 'TypeScript入門', price: 2800 },
@@ -25,7 +30,7 @@ const productList: Paginated<Product> = {
   page: 1,
 };
 
-console.log(productList.items[0].name);
+console.log(productList.items[0]?.name);
 console.log(productList.total);
 
 // 問題 2
@@ -33,6 +38,15 @@ type User = {
   id: number;
   name: string;
 };
+type SuccessResponse<T> = {
+  status: 'success';
+  data: T;
+};
+type ErrorResponse = {
+  status: 'error';
+  message: string;
+};
+type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 function handleUserResponse(response: ApiResponse<User>) {
   if (response.status === 'success') {
