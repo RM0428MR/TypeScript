@@ -1,6 +1,3 @@
-// ここにコードを書きながら確認しましょう！
-
-
 
 
 
@@ -13,6 +10,14 @@
 function setupForm() {
   const emailEl = document.getElementById('email-input');
   const startBtnEl = document.getElementById('start-btn');
-}
 
+  if (emailEl && startBtnEl) {
+    const inputElement = emailEl as HTMLInputElement;
+    const buttonElement = startBtnEl as HTMLButtonElement;
+
+    inputElement.addEventListener('input', () => {
+      buttonElement.disabled = inputElement.value.trim() === '';
+    });
+  }
+}
 setupForm();
