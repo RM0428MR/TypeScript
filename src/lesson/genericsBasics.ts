@@ -26,8 +26,8 @@ console.log(getOrDefault(null, 0));
 
 // 問題 2
 
-function compact<T>(item: (T | null)[]): T[] {
-  return item.filter((item): item is T => item !== null);
+function compact<T>(items: (T | null)[]): T[] {
+  return items.filter((item): item is T => item !== null);
 }
 
 console.log(compact(['Alice', null, 'Bob', null, 'Carol']));

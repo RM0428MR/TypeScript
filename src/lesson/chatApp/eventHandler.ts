@@ -20,18 +20,14 @@ const inputEL = document.getElementById('message-input');
 const sendButton2 = document.getElementById('send-btn');
 
 if (inputEL && sendButton2) {
-  const  inputElement = inputEL as HTMLInputElement;
+  const inputElement = inputEL as HTMLInputElement;
   const sendButton2Element = sendButton2 as HTMLButtonElement;
 
   const updateButtonState = () => {
     sendButton2Element.disabled = inputElement.value.trim() === '';
   };
 
-  inputElement.addEventListener('input', (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      sendButton2Element.disabled = event.target.value.trim() === '';
-    }
-  });
+  inputElement.addEventListener('input', updateButtonState);
   updateButtonState();
 }
   

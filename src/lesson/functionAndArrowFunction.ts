@@ -27,7 +27,7 @@ function showProfile(name: string, age: number): void {
   console.log(name, age);
 }
 
-const logError = (message: string): void => {
+const logError = (message: string) => {
   console.log(message);
 }
 showProfile('太郎', 25);

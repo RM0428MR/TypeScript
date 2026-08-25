@@ -16,18 +16,10 @@ function setupForm() {
   if (emailEl && startBtnEl && setupScreen && chatScreen) {
     const inputElement = emailEl as HTMLInputElement;
     const buttonElement = startBtnEl as HTMLButtonElement;
-    const setupScreenElement = setupScreen as HTMLElement;
-    const chatScreenElement = chatScreen as HTMLElement;
 
     inputElement.addEventListener('input', () => {
       buttonElement.disabled = inputElement.value.trim() === '';
     });
-
-    buttonElement.addEventListener('click', () => {
-      setupScreenElement.style.display = 'none';
-      chatScreenElement.style.display = 'flex';
-    });
   }
 }
-
 setupForm();
