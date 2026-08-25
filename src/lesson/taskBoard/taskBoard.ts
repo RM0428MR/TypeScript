@@ -104,34 +104,39 @@ taskForm.addEventListener("submit", async (event: SubmitEvent) => {
     showErrorMessage("タイトルを入力してください");
     return;
   }
+  
+let response: Response;
 
-  try {
-    const response = await fetch("/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, priority }),
-    });
+try {
+  response = await fetch("/api/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, priority }),
+  });
+} catch {
+  showErrorMessage("ネットワークエラーが発生しました");
+  return;
+}
 
-    const responseBody = (await response.json().catch(() => null)) as
-      | ({ message?: string } & Partial<Task>)
-      | null;
+if (!response.ok) {
+  const errorBody = (await response.json().catch(() => null)) as
+    | { message?: string }
+    | null;
 
-    if (!response.ok) {
-      showErrorMessage(responseBody?.message ?? "タスクの追加に失敗しました");
-      return;
-    }
+  showErrorMessage(errorBody?.message ?? "タスクの追加に失敗しました");
+  return;
+}
 
-    const newTask = responseBody as Task;
-    tasks = [...tasks, newTask];
-    taskTitleInput.value = "";  
-    taskPrioritySelect.value = "low";
-    messageArea.textContent = "";
-    renderBoard();
-  } catch {
-    showErrorMessage("ネットワークエラーが発生しました");
-  }
+const newTask = (await response.json()) as Task;
+tasks = [...tasks, newTask];
+
+taskTitleInput.value = "";
+taskPrioritySelect.value = "low";
+messageArea.textContent = "";
+
+renderBoard();
 });
 
 loadTasks()
